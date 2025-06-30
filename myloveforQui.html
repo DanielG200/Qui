@@ -63,6 +63,35 @@
             z-index: 0; /* Keep behind everything else */
         }
 
+        .custom-heart {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            position: fixed;
+            transform: rotate(-45deg);
+            animation: floatHeart 8s linear infinite;
+        }
+        
+        .custom-heart::before,
+        .custom-heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        .custom-heart::before {
+            top: -10px;
+            left: 0;
+        }
+            
+        .custom-heart::after {
+            left: 10px;
+            top: 0;
+        }
+
         @keyframes floatHeart {
             0% {
                 transform: translateY(0) scale(1) rotate(0deg);
@@ -289,14 +318,12 @@
     </div>
 
     <script>
-        // Create 20 floating hearts
         for (let i = 0; i < 20; i++) {
             const heart = document.createElement('div');
-            heart.className = 'heart-float';
+            heart.className = 'heart-float custom-heart'; // add custom-heart class
             heart.style.left = `${Math.random() * 100}vw`;
             heart.style.animationDelay = `${Math.random() * 8}s`;
-            heart.innerHTML = '♡';
-            document.body.appendChild(heart);
+            document.body.appendChild(heart); // no innerHTML here
         }
     </script>
 </body>
